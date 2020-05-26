@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace examination_3
 {
@@ -6,7 +7,13 @@ namespace examination_3
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+        //    Card card = new Card(CardSuit.Clubs, CardRank.Ace);
+        //    Console.WriteLine(card.ToString());
+
+           Deck deck = new Deck();
+           Console.WriteLine(deck);
+
+            // Console.WriteLine("Hello World!");
         }
     }
 }
