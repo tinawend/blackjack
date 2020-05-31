@@ -7,6 +7,7 @@ namespace examination_3
     {
 
             public List<Card> Cards;
+            public List<Card> Discard = new List<Card>();
 
     public Deck()
     {
@@ -45,6 +46,7 @@ namespace examination_3
     private static Random rng = new Random();
     public Card Shuffle()
     {
+        ReUseOldCards();
         int n = Cards.Count;  
         while (n > 1) { 
         n--;  
@@ -59,6 +61,33 @@ return Cards[0];
 // Console.WriteLine((int)Cards[0].Rank);
 
     }
+
+public void removeCardFromDeck()
+{
+Cards.RemoveAt(0);
+}
+
+      public void ThrowUsedCards (Player player) {
+
+            for(int i = 0; i < player.Hand.Count; i++)
+          {
+
+    Discard.Add(player.Hand[i]);
+          }
+          Console.WriteLine("Card deck " + Cards.Count);
+    Console.WriteLine("discard " + Discard.Count);
+  }
+
+        public void ReUseOldCards()
+        {
+            if(Cards.Count <= 1)
+            {
+                for(int i = 0; i<Discard.Count; i++)
+                Cards.Add(Discard[i]);
+                Discard.Clear();
+            }
+
+        }
         
     }
 }

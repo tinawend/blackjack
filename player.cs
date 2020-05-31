@@ -9,13 +9,13 @@ public class Player
     private int _limit;
     private string _name;
     public List<Card> Hand = new List<Card>();
-    // Deck deck = new Deck();
-     Deck deck = new Deck();
+    //  Deck deck = new Deck();
     public Player(int limit, string name)
     {
         _limit = limit;
         _name = name;
-         deck.DeckOfCards();
+        // Console.WriteLine(_name);
+        //  deck.DeckOfCards();
 
     }
     public int Score(){
@@ -40,23 +40,15 @@ public class Player
         return Score() >= _limit || Hand.Count == 5;
     }
 
-  public void HitMe() {
+  public void HitMe(Card card) {
 
-        Hand.Add(deck.Shuffle());
+        Hand.Add(card);
   }
-    public void ReciveCard()
+    public void PrintName()
     {
-        do 
-        {
-            HitMe();
-        }
-            while (!isDone());
 
-        // Console.WriteLine(deck.Shuffle().ToString());
         Console.WriteLine(_name);
-        Console.WriteLine(string.Join("\n", Hand));
-        Console.WriteLine(Score());
-        //  Console.WriteLine(value);
+
     }
 
 

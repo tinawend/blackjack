@@ -7,17 +7,7 @@ namespace examination_3
     {
         static void Main(string[] args)
         {
-        //    Deck deck = new Deck();
-        //   deck.DeckOfCards();
-        //   Console.WriteLine(deck.Shuffle());
-        //  Deck deck = new Deck();
-        //  deck.DeckOfCards();
-        // Player player = new Player(16, "player");
-        // player.ReciveCard();
-
-        // Dealer dealer = new Dealer(10, "Dealer");
-        // dealer.ReciveCard();
-        StartGame startGame = new StartGame(1);
+        StartGame startGame = new StartGame(20);
         startGame.StartRound();
 
         }
