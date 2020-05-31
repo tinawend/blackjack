@@ -3,7 +3,7 @@ namespace examination_3
     public enum CardRank
 {
     
-    Two = 2, 
+    Two = 2,
     Three, 
     Four, 
     Five, 

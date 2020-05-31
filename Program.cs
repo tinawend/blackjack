@@ -7,13 +7,19 @@ namespace examination_3
     {
         static void Main(string[] args)
         {
-        //    Card card = new Card(CardSuit.Clubs, CardRank.Ace);
-        //    Console.WriteLine(card.ToString());
+        //    Deck deck = new Deck();
+        //   deck.DeckOfCards();
+        //   Console.WriteLine(deck.Shuffle());
+        //  Deck deck = new Deck();
+        //  deck.DeckOfCards();
+        // Player player = new Player(16, "player");
+        // player.ReciveCard();
 
-           Deck deck = new Deck();
-           Console.WriteLine(deck);
+        // Dealer dealer = new Dealer(10, "Dealer");
+        // dealer.ReciveCard();
+        StartGame startGame = new StartGame(1);
+        startGame.StartRound();
 
-            // Console.WriteLine("Hello World!");
         }
     }
 }

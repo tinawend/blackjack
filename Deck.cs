@@ -10,30 +10,55 @@ namespace examination_3
 
     public Deck()
     {
+
+    }
+    public List<Card> DeckOfCards(){
         Cards = new List<Card>();
         int numSuits = Enum.GetNames(typeof(CardSuit)).Length;
         int numKinds = Enum.GetNames(typeof(CardRank)).Length;
 
         for (int suit = 0; suit < numSuits; suit++)
         {
-            for (int rank = 2; rank <= numKinds + 1; rank++)
+            for (int rank = 2; rank < numKinds + 2; rank++)
             {
                 Cards.Add(new Card((CardSuit)suit, (CardRank)rank));
             }
         }
+        // Console.WriteLine(Cards.Count);
+        // Console.WriteLine(Cards);
+        return Cards;
+
+        // foreach(Card card in Cards)
+        // {
+        // return card;
+        // }
+    }
+
+    public void printDeck()
+    {
         foreach(Card card in Cards)
         {
         Console.WriteLine(card.ToString());
         }
     }
-        // public Deck(Enumerable<Card> collection) : base(collection)
-        // {
-        //         // string [] value = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
-        //         // string [] suit = {"Hearts ♥︎", "Spades ♠︎", "Clubs ♣︎", "Dimonds ♦︎"};
-        // }
-        // public Card(): base(52) {
 
-        // }
+    private static Random rng = new Random();
+    public Card Shuffle()
+    {
+        int n = Cards.Count;  
+        while (n > 1) { 
+        n--;  
+        int k = rng.Next(n + 1);  
+        Card value = Cards[k];  
+        Cards[k] = Cards[n];  
+        Cards[n] = value;
+        }
+// Console.WriteLine(string.Join("\n", Cards));
+// Console.WriteLine(Cards.Count);
+return Cards[0];
+// Console.WriteLine((int)Cards[0].Rank);
+
+    }
         
     }
 }
