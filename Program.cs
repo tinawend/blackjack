@@ -7,7 +7,7 @@ namespace examination_3
     {
         static void Main(string[] args)
         {
-        StartGame startGame = new StartGame(20);
+        StartGame startGame = new StartGame(2);
         startGame.StartRound();
 
         }
