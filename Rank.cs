@@ -1,7 +1,7 @@
 namespace examination_3
 {
     public enum CardRank
-{
+    {
     
     Two = 2,
     Three, 
@@ -16,5 +16,5 @@ namespace examination_3
     Queen,
     King,
     Ace
-}
+    }
 }

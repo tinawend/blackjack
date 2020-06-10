@@ -7,8 +7,10 @@ namespace examination_3
     {
         static void Main(string[] args)
         {
-        StartGame startGame = new StartGame(2);
-        startGame.StartRound();
+            Console.WriteLine("How many players?");
+            int players = Convert.ToInt32(Console.ReadLine());
+            StartGame startGame = new StartGame(players);
+            startGame.StartRound();
 
         }
     }

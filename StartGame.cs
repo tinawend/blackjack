@@ -16,78 +16,77 @@ namespace examination_3
 
         }
 
-        public void StartRound ()
+        public void DealUntilDone(Player player)
         {
-            Random random = new Random();
-            for(int i = 0; i < _players; i++)
-            {
-                Player player = new Player(random.Next(10, 16), "player "+(i+1));
-                Dealer dealer = new Dealer(random.Next(10, 16), "Dealer");
                 player.HitMe(deck.Shuffle());
+                deck.removeCardFromDeck();
                 do 
                 {
                     player.HitMe(deck.Shuffle());
                     deck.removeCardFromDeck();
                 }
                 while (!player.isDone());
+        }
 
+        public void PrintResults(Player player)
+        {
                 player.PrintName();
                 Console.Write(string.Join(", ", player.Hand));
                 Console.WriteLine(" (" + player.Score() + ")");
                 deck.ThrowUsedCards(player);
+        }
+
+        public void StartRound ()
+        {
+            Random random = new Random();
+            for(int i = 0; i < _players; i++)
+            {
+                Player player = new Player(random.Next(10, 16), "player " + (i+1));
+                Dealer dealer = new Dealer(random.Next(10, 16), "Dealer");
+                
+                DealUntilDone(player);
+                PrintResults(player);
 
                 if (player.Score() == 21) 
                 {
-                    Console.WriteLine("Player wins");
+                    Console.WriteLine("Player wins!");
                 } 
                 else if (player.Hand.Count == 5 && player.Score() < 21) 
                 {
-                    Console.WriteLine("player wins");
+                    Console.WriteLine("player wins!");
                 } 
                 else if (player.Score() > 21) 
                 {
-                    Console.WriteLine("player got busted");
+                    Console.WriteLine("BUSTED!");
                 } 
                 else if (player.Score() < 21 && player.Hand.Count < 5) 
                 {
-                    dealer.HitMe(deck.Shuffle());
-
-                    do 
-                    {
-                        dealer.HitMe(deck.Shuffle());
-                        deck.removeCardFromDeck();
-                    }
-                    while (!dealer.isDone());
-
-                    dealer.PrintName();
-                    Console.Write(string.Join(", ", dealer.Hand));
-                    Console.WriteLine(" (" + dealer.Score() + ")");
-                    deck.ThrowUsedCards(dealer);
+                    DealUntilDone(dealer);
+                    PrintResults(dealer);
+                    
                     if (dealer.Score() == 21) 
                     {
-                        Console.WriteLine("dealer wins");
+                        Console.WriteLine("dealer wins!");
                     } 
                     else if (dealer.Score() > 21) 
                     {
-                        Console.WriteLine("player wins");
+                        Console.WriteLine("player wins!");
                     } 
                     else if (player.Score() > dealer.Score()) 
                     {
-                        Console.WriteLine("player wins");
+                        Console.WriteLine("player wins!");
                     } 
                     else if (player.Score() < dealer.Score()) 
                     {
-                        Console.WriteLine("dealer wins");
+                        Console.WriteLine("dealer wins!");
                     } 
                     else if (player.Score() == dealer.Score()) 
                     {
-                        Console.WriteLine("dealer wins");
+                        Console.WriteLine("dealer wins!");
                     }
                 }
                 Console.WriteLine("\n");
             }
-
         }
-
     }
 }

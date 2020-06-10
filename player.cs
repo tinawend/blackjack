@@ -46,7 +46,8 @@ namespace examination_3
 
         public void PrintName()
         {
-            Console.WriteLine(_name + ", " + _limit);
+            //_limit
+            Console.Write(_name + ": ");
         }
 
 

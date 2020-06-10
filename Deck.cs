@@ -6,8 +6,9 @@ namespace examination_3
     public class Deck
     {
 
-        public List<Card> Cards;
-        public List<Card> Discard = new List<Card>();
+        private List<Card> _Cards;
+        private List<Card> _Discard = new List<Card>();
+        private static Random _rnd = new Random();
 
         public Deck()
         {
@@ -16,7 +17,7 @@ namespace examination_3
 
         public List<Card> DeckOfCards()
         {
-            Cards = new List<Card>();
+            _Cards = new List<Card>();
             int numSuits = Enum.GetNames(typeof(CardSuit)).Length;
             int numKinds = Enum.GetNames(typeof(CardRank)).Length;
 
@@ -24,62 +25,61 @@ namespace examination_3
             {
                 for (int rank = 2; rank < numKinds + 2; rank++)
                 {
-                    Cards.Add(new Card((CardSuit)suit, (CardRank)rank));
+                    _Cards.Add(new Card((CardSuit)suit, (CardRank)rank));
                 }
             }
-            return Cards;
+            return _Cards;
         }
 
-        public void printDeck()
-        {
-            foreach(Card card in Cards)
-            {
-            Console.WriteLine(card.ToString());
-            }
-        }
+        // public void printDeck()
+        // {
+        //     foreach(Card card in Cards)
+        //     {
+        //     Console.WriteLine(card.ToString());
+        //     }
+        // }
 
-    private static Random rng = new Random();
         public Card Shuffle()
         {
             ReUseOldCards();
-            int n = Cards.Count;  
+            int n = _Cards.Count;  
             while (n > 1) 
             { 
                 n--;  
-                int k = rng.Next(n + 1);  
-                Card value = Cards[k];  
-                Cards[k] = Cards[n];  
-                Cards[n] = value;
+                int k = _rnd.Next(n + 1);  
+                Card value = _Cards[k];  
+                _Cards[k] = _Cards[n];  
+                _Cards[n] = value;
             }
 
-            return Cards[0];
+            return _Cards[0];
 
 
         }
 
         public void removeCardFromDeck()
         {
-            Cards.RemoveAt(0);
+            _Cards.RemoveAt(0);
         }
 
-      public void ThrowUsedCards (Player player) {
+        public void ThrowUsedCards (Player player) 
+        {
 
             for(int i = 0; i < player.Hand.Count; i++)
           {
-
-    Discard.Add(player.Hand[i]);
+                _Discard.Add(player.Hand[i]);
           }
-    //       Console.WriteLine("Card deck " + Cards.Count);
-    // Console.WriteLine("discard " + Discard.Count);
-  }
+                // Console.WriteLine("Card deck " + _Cards.Count);
+                // Console.WriteLine("discard " + _Discard.Count);
+        }
 
         public void ReUseOldCards()
         {
-            if(Cards.Count <= 1)
+            if(_Cards.Count <= 1)
             {
-                for(int i = 0; i<Discard.Count; i++)
-                Cards.Add(Discard[i]);
-                Discard.Clear();
+                for(int i = 0; i<_Discard.Count; i++)
+                _Cards.Add(_Discard[i]);
+                _Discard.Clear();
             }
 
         }
